@@ -1,0 +1,135 @@
+
+import java.util.Scanner;
+public class SparseMatrixUsingLinkedList {
+
+	static node head=null;
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the row and column of the sparse matrix:");
+		int row=sc.nextInt();
+		int k=0;
+		int column=sc.nextInt();
+		int[][] sparse=new int[row][column];
+		System.out.println("Enter the elements:");
+		for(int i=0;i<row;i++)
+		{
+			System.out.println(i+" row elements->");
+			for(int j=0;j<column;j++)
+			{
+				System.out.print(j+" column element: ");
+				sparse[i][j]=sc.nextInt();
+			}
+			System.out.println();
+		}
+		create(sparse,row,column);
+		print();
+		insert(sparse,row,column);
+		print();
+		search();
+		delete(sparse,row,column);
+		print();
+		
+	}
+	static void create(int[][] sparse,int row,int column)
+	{
+		for(int i=0;i<row;i++)
+		{
+			for(int j=0;j<column;j++)
+			{
+				if(sparse[i][j]!=0)
+				{
+					createnode(i,j,sparse[i][j]);
+				}
+			}
+		}
+	}
+	static void insert(int[][] sparse,int row,int column)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the row and column for the element to insert:");
+		int r=sc.nextInt();
+		int c=sc.nextInt();
+		if(r>=row||c>=column)
+		{
+			System.out.println("Array index out of bound");
+			return;
+		}
+		System.out.println("Enter the non zero element");
+		sparse[r][c]=sc.nextInt();
+		System.out.println("Element Added");
+		head=null;
+		create(sparse,row,column);
+		
+	}
+	static void createnode(int row,int column,int data)
+	{
+		node n=new node(row,column,data);
+		if(head==null)
+		{
+			head=n;
+			return;
+		}
+			node temp=head;	
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			temp.next=n;
+	}
+	static void print()
+	{
+		node temp=head;
+		System.out.println("List discription Using LinkedList");
+		while(temp!=null)
+		{
+			System.out.println(temp.row+" "+temp.column+" "+temp.data);
+			temp=temp.next;
+		}
+	}
+	static void search()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the element to search:");
+		int k=sc.nextInt();
+		node temp=head;
+		while(temp!=null)
+		{
+			if(temp.data==k)
+			{
+				System.out.println("Element present at: "+temp.row+" row and "+temp.column+" column in sparse matrix.");
+				return;
+			}
+			temp=temp.next;
+		}
+	}
+	static void delete(int[][] sparse,int row,int column)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the row and column to delete :");
+		int r=sc.nextInt();
+		int c=sc.nextInt();
+		if(sparse[r][c]==0)
+		{
+			System.out.println("The value is already zero");
+			return;
+		}
+		else
+		{
+			sparse[r][c]=0;
+			head=null;
+			create(sparse,row,column);
+		}
+		
+	}
+}
+class node
+{
+	node next;
+	int row,column,data;
+	node(int row,int column,int data)
+	{
+		this.row=row;
+		this.column=column;
+		this.data=data;
+	}
+}
