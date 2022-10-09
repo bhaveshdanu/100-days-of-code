@@ -1,0 +1,87 @@
+
+public class prog3 {
+	
+	static node front;
+	static node back;
+	public static void main(String[] args) {
+		add(1);
+		print();
+		add(2);
+		print();
+		add(3);
+		print();
+		delete();
+		print();
+		
+		
+	}
+	static void add(int data)
+	{
+		node n=new node(data);
+		System.out.println(data+" has been added to Queue");
+		if(front==null)
+		{
+			front=n;
+			back=n;
+			return;
+		}
+		back.next=n;
+		n.prev=back;
+		back=n;
+		return;
+	}
+	static void delete()
+	{
+		if(front==null)
+		{
+			System.out.println("Queue is Empty");
+			return;
+		}
+		System.out.println("-----------------------------");
+		System.out.println("Deletion Operation Performed");
+		System.out.println("-----------------------------");
+		if(front==back)
+		{
+			front=null;
+			back=null;
+			System.out.println("All elements of queue is deleted");
+			return;
+		}
+		front=front.next;
+		return;
+	}
+	static void print()
+	{
+		if(front==null)
+		{
+			System.out.println("Queue is Empty");
+			return;
+		}
+		node temp=front;
+		System.out.println();
+		System.out.println("Queue :");
+		System.out.println("----------------------");
+		while(temp!=null)
+		{
+			
+			System.out.print("| "+temp.data+" |");
+			temp=temp.next;
+		}
+		System.out.println();
+		System.out.println("----------------------");
+		return;
+	}
+	
+}
+class node
+{
+	node next;
+	node prev;
+	int data;
+	node(int data)
+	{
+		this.data=data;
+		this.next=null;
+		this.prev=null;
+	}
+}
