@@ -1,0 +1,48 @@
+
+public class Mergetwoarrays {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a[]= {1,2,3};
+		int b[]= {4,5,6};
+		int n=a.length;
+		int m=b.length;
+		int i=0;
+		int j=0;
+		int k=0;
+		int[] f=new int[m+n];
+		while(n>i&&m>j)
+		{
+			if(a[i]<b[j])
+			{
+				f[k]=a[i];
+				i++;
+				k++;
+			}
+			else
+			{
+				f[k]=b[j];
+				k++;
+				j++;
+			}
+		}
+		while(i<n) {
+			f[k]=a[i];
+			i++;
+			k++;
+			
+		}
+		while(j<m)
+		{
+			f[k]=b[j];
+			k++;
+			j++;
+		}
+		for(int q=0;q<f.length;q++)
+		{
+			System.out.print(f[q]+" ");
+		}
+
+	}
+
+}
