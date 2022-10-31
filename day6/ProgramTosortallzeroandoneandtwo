@@ -1,0 +1,25 @@
+
+import java.util.*;
+public class Consitsonlyzeroonetwo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] a= {2,2,1,0,2,1,2,0,0};
+		ArrayList<Integer> ls=new ArrayList<>();
+		for(int x:a)
+		{
+			ls.add(x);
+		}
+		Collections.sort(ls);
+		for(int i=0;i<ls.size();i++)
+		{
+			a[i]=ls.get(i);
+		}
+		for(int i=0;i<a.length;i++)
+		{
+			System.out.print(a[i]+" ");
+		}
+
+	}
+
+}
