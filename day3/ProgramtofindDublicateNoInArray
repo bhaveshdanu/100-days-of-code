@@ -1,0 +1,26 @@
+package javaPrograms;
+import java.util.*;
+public class DublicateInArray {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a[]= {1,2,3,4,5,3,2,3};
+		HashSet<Integer> hs=new HashSet<>();
+		HashSet<Integer> ans=new HashSet<>();
+		for(int x:a)
+		{
+			if(hs.contains(x))
+			{
+				ans.add(x);
+			}
+			else
+			hs.add(x);
+		}
+		Iterator<Integer> it=ans.iterator();
+		while(it.hasNext())
+		{
+			System.out.print(it.next()+" ");
+		}
+	}
+
+}
